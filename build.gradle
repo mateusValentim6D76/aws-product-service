@@ -2,10 +2,16 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'com.bmuschko.docker-spring-boot-application' version '8.0.0'
 }
 
-group = 'br.com.mv.cloud'
+group = 'mateusvalentim'
 version = '0.0.1-SNAPSHOT'
+
+bootJar {
+	archiveBaseName.set('aws_mv_project1')
+	archiveVersion.set('1.0.0')
+}
 
 java {
 	sourceCompatibility = '17'
@@ -32,4 +38,12 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+docker {
+	springBootApplication {
+		baseImage = 'openjdk:17-jdk-alpine'
+		ports = [8080]
+		images = ["${project.group}/${bootJar.archiveBaseName.get()}:${bootJar.archiveVersion.get()}"]
+	}
 }
