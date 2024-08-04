@@ -5,8 +5,10 @@ import br.com.mv.cloud.aws.dto.DataListProductDTO;
 import br.com.mv.cloud.aws.dto.ProductCreateDTO;
 import br.com.mv.cloud.aws.dto.ProductDTO;
 import br.com.mv.cloud.aws.dto.ProductUpdateDTO;
+import br.com.mv.cloud.aws.enums.EventTypeInform;
 import br.com.mv.cloud.aws.exception.ErrorCreateProductException;
 import br.com.mv.cloud.aws.repository.ProductRepository;
+import br.com.mv.cloud.aws.service.ProductPublisher;
 import br.com.mv.cloud.aws.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,13 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository repository;
 
     private final ModelMapper modelMapper;
+    private final ProductPublisher productPublisher;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository repository, ModelMapper modelMapper) {
+    public ProductServiceImpl(ProductRepository repository, ModelMapper modelMapper, ProductPublisher productPublisher) {
         this.repository = repository;
         this.modelMapper = modelMapper;
+        this.productPublisher = productPublisher;
     }
 
     public Optional<Product> findById(Long id) {
@@ -49,6 +53,8 @@ public class ProductServiceImpl implements ProductService {
             throw new ErrorCreateProductException("O valor deve ser maior ou igual a: " + MIN_VALUE);
         }
         product = repository.save(product);
+        productPublisher.publishProductEvent(product, EventTypeInform.PRODUCT_CREATE, "Mateus Valentim");
+
         return modelMapper.map(product, ProductCreateDTO.class);
     }
 
