@@ -38,6 +38,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'com.amazonaws:aws-java-sdk-sns:1.12.532'
 }
 
 tasks.withType(Test) {
