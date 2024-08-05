@@ -10,6 +10,7 @@ import com.amazonaws.services.sns.model.Topic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
@@ -20,13 +21,13 @@ public class SnsCreateConfigLocal {
     private final AmazonSNS snsClient;
     private final String productEventsTopic;
 
-    public SnsCreateConfigLocal(AmazonSNS amazonSNS, String productEventsTopic) {
+    public SnsCreateConfigLocal() {
         this.snsClient = AmazonSNSClient.builder()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("", Regions.US_EAST_1.getName()))
-                .withCredentials(new DefaultAWSCredentialsProviderChain()).build();
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", Regions.US_EAST_1.getName()))
+                .withCredentials(new DefaultAWSCredentialsProviderChain())
+                .build();
 
-        String TOPIC_NAME = "product-events";
-        CreateTopicRequest createTopicRequest = new CreateTopicRequest(TOPIC_NAME);
+        CreateTopicRequest createTopicRequest = new CreateTopicRequest("product-events");
         this.productEventsTopic = this.snsClient.createTopic(createTopicRequest).getTopicArn();
 
         log.info("SNS topic ARN {}" + productEventsTopic);
