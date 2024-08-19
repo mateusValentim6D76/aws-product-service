@@ -6,6 +6,7 @@ import br.com.mv.cloud.aws.dto.ProductEventDTO;
 import br.com.mv.cloud.aws.enums.EventTypeInform;
 import br.com.mv.cloud.aws.service.ProductPublisher;
 import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.model.PublishResult;
 import com.amazonaws.services.sns.model.Topic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +39,10 @@ public class ProductPublisherImpl implements ProductPublisher {
         TopicEnvelope topicEnvelope = new TopicEnvelope();
         try {
             topicEnvelope.setData(objectMapper.writeValueAsString(productEventDTO));
-            snsClient.publish(productEventTopic.getTopicArn(), objectMapper.writeValueAsString(topicEnvelope));
+            PublishResult publishResult = snsClient.publish(productEventTopic.getTopicArn(), objectMapper.writeValueAsString(topicEnvelope));
+            log.info("Product event sent: - Event {} - ProductId: {} - MessageId: {}", topicEnvelope.getEventType(),
+                    product.getId(),
+                    publishResult.getMessageId());
 
         } catch (JsonProcessingException e) {
             log.error("Failed to create prodyuct event message");
