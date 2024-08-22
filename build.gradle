@@ -35,6 +35,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'com.amazonaws:aws-java-sdk-sns:1.12.532'
 	implementation 'com.amazonaws:aws-java-sdk-s3:1.11.887'
+	implementation 'com.amazonaws:amazon-sqs-java-messaging-lib:1.0.8'
+	implementation 'org.springframework:spring-jms:5.2.9.RELEASE'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
