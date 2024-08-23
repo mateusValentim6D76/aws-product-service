@@ -1,4 +1,4 @@
-package br.com.mv.cloud.aws.domain;
+package br.com.mv.cloud.aws.model;
 
 import br.com.mv.cloud.aws.enums.EventTypeInform;
 import lombok.Getter;

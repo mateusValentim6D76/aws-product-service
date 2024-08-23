@@ -1,4 +1,4 @@
-package br.com.mv.cloud.aws.domain;
+package br.com.mv.cloud.aws.model;
 
 public class UrlResponse {
 

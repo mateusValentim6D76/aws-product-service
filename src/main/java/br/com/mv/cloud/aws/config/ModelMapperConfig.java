@@ -1,10 +1,9 @@
 package br.com.mv.cloud.aws.config;
 
-import br.com.mv.cloud.aws.domain.Product;
+import br.com.mv.cloud.aws.model.Product;
 import br.com.mv.cloud.aws.dto.ProductCreateDTO;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

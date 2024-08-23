@@ -1,6 +1,6 @@
 package br.com.mv.cloud.aws.dto;
 
-import br.com.mv.cloud.aws.domain.Manufacturer;
+import br.com.mv.cloud.aws.model.Manufacturer;
 
 public record ManufactureDTO(Long id, String manufactureName) {
 

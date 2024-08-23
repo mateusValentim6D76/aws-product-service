@@ -1,10 +1,8 @@
 package br.com.mv.cloud.aws.controller;
 
-import br.com.mv.cloud.aws.domain.UrlResponse;
+import br.com.mv.cloud.aws.model.UrlResponse;
 import br.com.mv.cloud.aws.service.InvoiceService;
-import com.amazonaws.services.s3.AmazonS3;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

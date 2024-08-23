@@ -1,6 +1,6 @@
 package br.com.mv.cloud.aws.service.impl;
 
-import br.com.mv.cloud.aws.domain.UrlResponse;
+import br.com.mv.cloud.aws.model.UrlResponse;
 import br.com.mv.cloud.aws.service.InvoiceService;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.TemporalAmount;
 import java.util.Date;
 import java.util.UUID;
 

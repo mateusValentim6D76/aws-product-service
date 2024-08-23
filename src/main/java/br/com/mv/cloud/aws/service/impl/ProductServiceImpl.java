@@ -1,6 +1,6 @@
 package br.com.mv.cloud.aws.service.impl;
 
-import br.com.mv.cloud.aws.domain.Product;
+import br.com.mv.cloud.aws.model.Product;
 import br.com.mv.cloud.aws.dto.DataListProductDTO;
 import br.com.mv.cloud.aws.dto.ProductCreateDTO;
 import br.com.mv.cloud.aws.dto.ProductDTO;

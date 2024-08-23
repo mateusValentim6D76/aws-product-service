@@ -1,15 +1,12 @@
-package br.com.mv.cloud.aws.domain;
+package br.com.mv.cloud.aws.model;
 
 import br.com.mv.cloud.aws.enums.ColorEnum;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"code"})})
 @Entity

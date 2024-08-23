@@ -1,7 +1,7 @@
 package br.com.mv.cloud.aws.service.impl;
 
-import br.com.mv.cloud.aws.domain.Product;
-import br.com.mv.cloud.aws.domain.TopicEnvelope;
+import br.com.mv.cloud.aws.model.Product;
+import br.com.mv.cloud.aws.model.TopicEnvelope;
 import br.com.mv.cloud.aws.dto.ProductEventDTO;
 import br.com.mv.cloud.aws.enums.EventTypeInform;
 import br.com.mv.cloud.aws.service.ProductPublisher;

@@ -1,7 +1,6 @@
 package br.com.mv.cloud.aws.dto;
 
-import br.com.mv.cloud.aws.domain.Manufacturer;
-import br.com.mv.cloud.aws.domain.Product;
+import br.com.mv.cloud.aws.model.Product;
 import br.com.mv.cloud.aws.enums.ColorEnum;
 
 import java.math.BigDecimal;

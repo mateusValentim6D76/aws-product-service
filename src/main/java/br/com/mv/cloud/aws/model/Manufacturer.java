@@ -1,12 +1,9 @@
-package br.com.mv.cloud.aws.domain;
+package br.com.mv.cloud.aws.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 
 @Data
