@@ -25,7 +25,7 @@ public class SQSCreateSubscribeLocal {
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
                 .build();
 
-        String productEventsQueueUrl = sqsClient.createQueue(new CreateQueueRequest("product-events-queue")).getQueueUrl();
+        String productEventsQueueUrl = sqsClient.createQueue(new CreateQueueRequest("product-events")).getQueueUrl();
 
         Topics.subscribeQueue(amazonSNSClient, sqsClient, productEventsTopic.getTopicArn(), productEventsQueueUrl);
 

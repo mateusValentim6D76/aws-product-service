@@ -1,9 +1,13 @@
 package br.com.mv.cloud.aws.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"invoiceNumber"})})
 @Entity
+@Getter
+@Setter
 public class Invoice {
 
     @Id

@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 
 
 
-public record ProductDTO(String name, String model, String code,  BigDecimal price, ColorEnum color) {
+public record ProductDTO(String name, String model, String code,  BigDecimal price, ColorEnum color, String username) {
 
 }

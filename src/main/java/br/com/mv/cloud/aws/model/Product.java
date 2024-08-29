@@ -19,7 +19,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(length = 32, nullable = false)
     private String name;
@@ -36,6 +36,10 @@ public class Product {
     @Column(nullable = false)
     @Enumerated
     private ColorEnum color;
+
+
+    @Column(nullable = false)
+    private String username;
 
     @ManyToMany
     @JoinTable(

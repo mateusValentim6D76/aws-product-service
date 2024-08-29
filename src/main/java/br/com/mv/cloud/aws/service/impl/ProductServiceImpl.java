@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
             throw new ErrorCreateProductException("O valor deve ser maior ou igual a: " + MIN_VALUE);
         }
         product = repository.save(product);
-        productPublisher.publishProductEvent(product, EventTypeInform.PRODUCT_CREATE, "Mateus Valentim");
+        productPublisher.publishProductEvent(product, EventTypeInform.PRODUCT_CREATE, product.getUsername());
 
         return modelMapper.map(product, ProductCreateDTO.class);
     }

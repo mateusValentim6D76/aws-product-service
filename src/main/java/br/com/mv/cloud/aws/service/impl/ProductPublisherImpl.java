@@ -34,14 +34,20 @@ public class ProductPublisherImpl implements ProductPublisher {
         ProductEventDTO productEventDTO = new ProductEventDTO();
         productEventDTO.setCode(product.getCode());
         productEventDTO.setId(product.getId());
-        productEventDTO.setName(product.getName());
+        productEventDTO.setName(username);
 
         TopicEnvelope topicEnvelope = new TopicEnvelope();
+        topicEnvelope.setEventType(eventTypeInform);
         try {
             topicEnvelope.setData(objectMapper.writeValueAsString(productEventDTO));
-            PublishResult publishResult = snsClient.publish(productEventTopic.getTopicArn(), objectMapper.writeValueAsString(topicEnvelope));
-            log.info("Product event sent: - Event {} - ProductId: {} - MessageId: {}", topicEnvelope.getEventType(),
-                    product.getId(),
+
+            PublishResult publishResult = snsClient.publish(
+                    productEventTopic.getTopicArn(),
+                    objectMapper.writeValueAsString(topicEnvelope));
+
+            log.info("Product event sent: Event: {} - ProductId: {} - MessageId: {}",
+                    topicEnvelope.getEventType(),
+                    productEventDTO.getId(),
                     publishResult.getMessageId());
 
         } catch (JsonProcessingException e) {
