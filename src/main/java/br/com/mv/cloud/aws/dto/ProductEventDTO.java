@@ -17,11 +17,15 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ProductEventDTO {
 
-    private long id;
-    private String username;
-    private String name;
-    private String model;
+//    private long id;
+//    private String username;
+//    private String name;
+//    private String model;
+//    private String code;
+//    private BigDecimal price;
+//    private ColorEnum color;
+
+    private long productId;
     private String code;
-    private BigDecimal price;
-    private ColorEnum color;
+    private String username;
 }

@@ -32,9 +32,9 @@ public class ProductPublisherImpl implements ProductPublisher {
     @Override
     public void publishProductEvent(Product product, EventTypeInform eventTypeInform, String username) {
         ProductEventDTO productEventDTO = new ProductEventDTO();
+        productEventDTO.setProductId(product.getId());
         productEventDTO.setCode(product.getCode());
-        productEventDTO.setId(product.getId());
-        productEventDTO.setName(username);
+        productEventDTO.setUsername(username);
 
         TopicEnvelope topicEnvelope = new TopicEnvelope();
         topicEnvelope.setEventType(eventTypeInform);
@@ -47,7 +47,7 @@ public class ProductPublisherImpl implements ProductPublisher {
 
             log.info("Product event sent: Event: {} - ProductId: {} - MessageId: {}",
                     topicEnvelope.getEventType(),
-                    productEventDTO.getId(),
+                    productEventDTO.getProductId(),
                     publishResult.getMessageId());
 
         } catch (JsonProcessingException e) {

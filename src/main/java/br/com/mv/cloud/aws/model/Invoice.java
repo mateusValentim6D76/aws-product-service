@@ -16,7 +16,7 @@ public class Invoice {
     @Column(length = 32, nullable = false)
     private String invoiceNumber;
     @Column(length = 32, nullable = false)
-    private String customName;
+    private String customerName;
     private float totalValue;
     private long productId;
     private int quantity;
