@@ -1,5 +1,6 @@
 package br.com.mv.cloud.aws.controller;
 
+import br.com.mv.cloud.aws.dto.ProductUpdateDTO;
 import br.com.mv.cloud.aws.model.Product;
 import br.com.mv.cloud.aws.dto.ProductCreateDTO;
 import br.com.mv.cloud.aws.dto.ProductDTO;
@@ -43,6 +44,29 @@ public class ProductController {
             return ResponseEntity.ok(createProduct);
         } catch (ErrorCreateProductException e) {
             throw e;
+        }
+    }
+
+    @PatchMapping("{/id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<?> create(@Valid @RequestBody ProductUpdateDTO productUpdateDTO, @PathVariable("id") Long id) {
+        try {
+            System.out.println("Received ProductDTO: " + productUpdateDTO);
+            ProductUpdateDTO updateProduct = productService.updateProduct(productUpdateDTO, id);
+            return ResponseEntity.ok(updateProduct);
+        } catch (ErrorCreateProductException e) {
+            throw e;
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        try {
+            productService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

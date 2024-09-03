@@ -10,11 +10,13 @@ import br.com.mv.cloud.aws.exception.ErrorCreateProductException;
 import br.com.mv.cloud.aws.repository.ProductRepository;
 import br.com.mv.cloud.aws.service.ProductPublisher;
 import br.com.mv.cloud.aws.service.ProductService;
+import com.amazonaws.services.sns.model.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -25,7 +27,6 @@ public class ProductServiceImpl implements ProductService {
 
     private static final BigDecimal MIN_VALUE = new BigDecimal("1.99");
     private final ProductRepository repository;
-
     private final ModelMapper modelMapper;
     private final ProductPublisher productPublisher;
 
@@ -59,7 +60,33 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductCreateDTO updateProduct(ProductUpdateDTO productUpdate) {
-        return null;
+    public ProductUpdateDTO updateProduct(ProductUpdateDTO productUpdate, Long id) {
+        Optional<Product> product = repository.findById(id);
+        if (product.isPresent()) {
+            Product existingProduct = product.get();
+            existingProduct.setName(productUpdate.name());
+            existingProduct.setColor(productUpdate.color());
+            existingProduct.setModel(productUpdate.model());
+            existingProduct.setPrice(productUpdate.price());
+
+            Product updatedProduct = repository.save(existingProduct);
+            productPublisher.publishProductEvent(existingProduct, EventTypeInform.PRODUCT_UPDATE, existingProduct.getUsername());
+            return modelMapper.map(updatedProduct, ProductUpdateDTO.class);
+        } else {
+            throw new ResourceNotFoundException("Resource not found by id: " + id);
+        }
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Optional<Product> userID = repository.findById(id);
+        if (userID.isPresent()) {
+            Product product = userID.get();
+            repository.deleteById(id);
+            productPublisher.publishProductEvent(product, EventTypeInform.PRODUCT_DELETE, "hannah");
+
+        } else {
+            throw new ResourceNotFoundException("ID não encontrado: " + id);
+        }
     }
 }

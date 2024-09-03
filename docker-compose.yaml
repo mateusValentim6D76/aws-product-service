@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack_main
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=s3,sqs,sns
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DEFAULT_REGION=us-east-1
+      - HOSTNAME_EXTERNAL=localhost
+#      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY} # Se você estiver usando a versão Pro
+    volumes:
+      - "./localstack_data:/tmp/localstack"
