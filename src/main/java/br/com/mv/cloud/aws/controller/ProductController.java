@@ -47,7 +47,7 @@ public class ProductController {
         }
     }
 
-    @PatchMapping("{/id}")
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> create(@Valid @RequestBody ProductUpdateDTO productUpdateDTO, @PathVariable("id") Long id) {
         try {

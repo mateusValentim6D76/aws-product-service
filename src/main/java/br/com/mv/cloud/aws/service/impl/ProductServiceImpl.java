@@ -64,10 +64,10 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = repository.findById(id);
         if (product.isPresent()) {
             Product existingProduct = product.get();
-            existingProduct.setName(productUpdate.name());
-            existingProduct.setColor(productUpdate.color());
-            existingProduct.setModel(productUpdate.model());
-            existingProduct.setPrice(productUpdate.price());
+            existingProduct.setName(productUpdate.getName());
+            existingProduct.setColor(productUpdate.getColor());
+            existingProduct.setModel(productUpdate.getModel());
+            existingProduct.setPrice(productUpdate.getPrice());
 
             Product updatedProduct = repository.save(existingProduct);
             productPublisher.publishProductEvent(existingProduct, EventTypeInform.PRODUCT_UPDATE, existingProduct.getUsername());
