@@ -1,4 +1,4 @@
-package br.com.mv.cloud.aws.config.local;
+package br.com.mv.cloud.aws.config;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;

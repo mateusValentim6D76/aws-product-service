@@ -1,6 +1,8 @@
 package br.com.mv.cloud.aws.service.impl;
 
+import br.com.mv.cloud.aws.model.Invoice;
 import br.com.mv.cloud.aws.model.UrlResponse;
+import br.com.mv.cloud.aws.repository.InvoiceRepository;
 import br.com.mv.cloud.aws.service.InvoiceService;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
@@ -17,6 +19,8 @@ import java.util.UUID;
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
 
+    @Autowired
+    private InvoiceRepository invoiceRepository;
     @Value("${aws.s3.bucket.invoice.name}")
     private String bucketName;
 
@@ -37,5 +41,15 @@ public class InvoiceServiceImpl implements InvoiceService {
         urlResponse.setUrl(amazonS3.generatePresignedUrl(generateS3PresignedUrlRequest).toString());
 
         return urlResponse;
+    }
+
+    @Override
+    public Iterable<Invoice> findAllByCustomerName(String customerName) {
+        return invoiceRepository.findAllByCustomerName(customerName);
+    }
+
+    @Override
+    public Iterable<Invoice> findAll() {
+        return invoiceRepository.findAll();
     }
 }
