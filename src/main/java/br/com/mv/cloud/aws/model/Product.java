@@ -22,7 +22,7 @@ public class Product {
     private long id;
 
     @Column(length = 32, nullable = false)
-    private String name;
+    private String productName;
 
     @Column(length = 24, nullable = false)
     private String model;
@@ -41,13 +41,13 @@ public class Product {
     @Column(nullable = false)
     private String username;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_manufacturer",
-            joinColumns =
-            @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "manufacturer_id"))
-    private List<Manufacturer> manufacturer;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "product_manufacturer",
+//            joinColumns =
+//            @JoinColumn(name = "product_id"),
+//            inverseJoinColumns = @JoinColumn(name = "manufacturer_id"))
+//    private List<Manufacturer> manufacturer;
 
     private LocalDateTime createdAt;
 

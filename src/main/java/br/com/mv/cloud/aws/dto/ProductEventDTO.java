@@ -19,7 +19,7 @@ public class ProductEventDTO {
 
 //    private long id;
 //    private String username;
-//    private String name;
+//    private String productName;
 //    private String model;
 //    private String code;
 //    private BigDecimal price;

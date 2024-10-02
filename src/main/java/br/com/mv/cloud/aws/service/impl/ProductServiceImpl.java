@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -64,13 +63,15 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = repository.findById(id);
         if (product.isPresent()) {
             Product existingProduct = product.get();
-            existingProduct.setName(productUpdate.getName());
+            existingProduct.setProductName(productUpdate.getProductName());
             existingProduct.setColor(productUpdate.getColor());
             existingProduct.setModel(productUpdate.getModel());
             existingProduct.setPrice(productUpdate.getPrice());
+            existingProduct.setUsername(productUpdate.getUsername());
 
             Product updatedProduct = repository.save(existingProduct);
-            productPublisher.publishProductEvent(existingProduct, EventTypeInform.PRODUCT_UPDATE, existingProduct.getUsername());
+
+            productPublisher.publishProductEvent(updatedProduct, EventTypeInform.PRODUCT_UPDATE, updatedProduct.getUsername());
             return modelMapper.map(updatedProduct, ProductUpdateDTO.class);
         } else {
             throw new ResourceNotFoundException("Resource not found by id: " + id);

@@ -49,7 +49,12 @@ public class InvoiceConsumer {
 
     private void processInvoiceNotification(S3EventNotification
                                                     s3EventNotification) throws IOException {
+        if(s3EventNotification == null || s3EventNotification.getRecords() == null || s3EventNotification.getRecords().isEmpty()){
+            log.warn("No records found in S3EventNotification");
+            return;
+        }
         for (S3EventNotification.S3EventNotificationRecord
+
                 s3EventNotificationRecord : s3EventNotification.getRecords()) {
             S3EventNotification.S3Entity s3Entity =
                     s3EventNotificationRecord.getS3();

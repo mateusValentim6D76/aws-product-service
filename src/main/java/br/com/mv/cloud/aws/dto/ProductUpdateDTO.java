@@ -1,12 +1,13 @@
 package br.com.mv.cloud.aws.dto;
 
-import br.com.mv.cloud.aws.model.Manufacturer;
 import br.com.mv.cloud.aws.enums.ColorEnum;
 
 import java.math.BigDecimal;
 
 public class ProductUpdateDTO {
-    private String name;
+    private String productName;
+
+    private String username;
     private String model;
     private BigDecimal price;
     private ColorEnum color;
@@ -14,16 +15,22 @@ public class ProductUpdateDTO {
     public ProductUpdateDTO() {
     }
 
-    public ProductUpdateDTO(String name, String model, BigDecimal price, ColorEnum color) {
-        this.name = name;
+    public ProductUpdateDTO(String name, String username, String model, BigDecimal price, ColorEnum color) {
+        this.productName = name;
+        this.username = username;
         this.model = model;
         this.price = price;
         this.color = color;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
     public String getModel() {
         return model;
     }
@@ -37,8 +44,8 @@ public class ProductUpdateDTO {
         return color;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public void setModel(String model) {

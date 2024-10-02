@@ -8,20 +8,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public record DataListProductDTO(Long id, String name, String model, String code, BigDecimal price, ColorEnum color,
-                                 List<ManufactureDTO> manufacturer, LocalDateTime createdAt) {
+public record DataListProductDTO(Long id, String productName, String model, String code, BigDecimal price, ColorEnum color, LocalDateTime createdAt) {
 
     public DataListProductDTO(Product product) {
         this(
                 product.getId(),
-                product.getName(),
+                product.getProductName(),
                 product.getModel(),
                 product.getCode(),
                 product.getPrice(),
                 product.getColor(),
-                product.getManufacturer().stream()
-                        .map(manufacture -> new ManufactureDTO(manufacture.getId(), manufacture.getManufacturerName()))
-                        .collect(Collectors.toList()),
+//                product.getManufacturer().stream()
+//                        .map(manufacture -> new ManufactureDTO(manufacture.getId(), manufacture.getManufacturerName()))
+//                        .collect(Collectors.toList()),
                 product.getCreatedAt()
         );
     }

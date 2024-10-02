@@ -25,7 +25,7 @@ public class ModelMapperConfig {
                 Product source = context.getSource();
                 return new ProductCreateDTO(
                         source.getId(),
-                        source.getName(),
+                        source.getProductName(),
                         source.getModel(),
                         source.getCode(),
                         source.getPrice(),

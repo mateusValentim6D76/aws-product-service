@@ -45,9 +45,10 @@ public class ProductPublisherImpl implements ProductPublisher {
                     productEventTopic.getTopicArn(),
                     objectMapper.writeValueAsString(topicEnvelope));
 
-            log.info("Product event sent: Event: {} - ProductId: {} - MessageId: {}",
+            log.info("Product event sent: Event: {} - ProductId: {} - Username: {} - MessageId: {}",
                     topicEnvelope.getEventType(),
                     productEventDTO.getProductId(),
+                    productEventDTO.getUsername(),
                     publishResult.getMessageId());
 
         } catch (JsonProcessingException e) {

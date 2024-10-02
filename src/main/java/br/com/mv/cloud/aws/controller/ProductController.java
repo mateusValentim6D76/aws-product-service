@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<?>> findAll(@PageableDefault(size = 10, sort = {"name", "model"}) Pageable pageable) {
+    public ResponseEntity<Page<?>> findAll(@PageableDefault(size = 10, sort = {"productName", "model"}) Pageable pageable) {
         var pageProducts = productService.findAll(pageable);
         return ResponseEntity.ok(pageProducts);
     }
@@ -49,7 +49,7 @@ public class ProductController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> create(@Valid @RequestBody ProductUpdateDTO productUpdateDTO, @PathVariable("id") Long id) {
+    public ResponseEntity<?> update(@Valid @RequestBody ProductUpdateDTO productUpdateDTO, @PathVariable("id") Long id) {
         try {
             System.out.println("Received ProductDTO: " + productUpdateDTO);
             ProductUpdateDTO updateProduct = productService.updateProduct(productUpdateDTO, id);

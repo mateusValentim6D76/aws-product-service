@@ -11,4 +11,6 @@ public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
     Optional<Invoice> findByInvoiceNumber(String invoiceNumber);
 
     List<Invoice> findAllByCustomerName(String customerName);
+
+    List<Invoice> findAll();
 }

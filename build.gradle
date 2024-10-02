@@ -10,7 +10,7 @@ version = '0.0.1-SNAPSHOT'
 
 bootJar {
 	archiveBaseName.set('aws_mv_project1')
-	archiveVersion.set('1.5.0')
+	archiveVersion.set('1.6.0')
 }
 
 java {

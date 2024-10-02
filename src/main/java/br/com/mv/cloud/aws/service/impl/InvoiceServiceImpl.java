@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -44,12 +45,12 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public Iterable<Invoice> findAllByCustomerName(String customerName) {
+    public List<Invoice> findAllByCustomerName(String customerName) {
         return invoiceRepository.findAllByCustomerName(customerName);
     }
 
     @Override
-    public Iterable<Invoice> findAll() {
+    public List<Invoice> findAll() {
         return invoiceRepository.findAll();
     }
 }
