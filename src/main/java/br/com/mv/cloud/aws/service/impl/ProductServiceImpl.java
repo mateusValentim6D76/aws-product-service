@@ -84,7 +84,7 @@ public class ProductServiceImpl implements ProductService {
         if (userID.isPresent()) {
             Product product = userID.get();
             repository.deleteById(id);
-            productPublisher.publishProductEvent(product, EventTypeInform.PRODUCT_DELETE, "hannah");
+            productPublisher.publishProductEvent(product, EventTypeInform.PRODUCT_DELETE, product.getUsername());
 
         } else {
             throw new ResourceNotFoundException("ID não encontrado: " + id);
